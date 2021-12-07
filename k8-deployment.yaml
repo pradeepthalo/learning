@@ -17,5 +17,5 @@ spec:
       containers:
         - name: helloworld
           image: nginx:1.14.2
-          ports: pradeeptp/helloworld
+          ports:
             - containerPort: 8080
