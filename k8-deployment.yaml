@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: helloworld
-          image: prdaeeptp/helloworld
+          image: pradeeptp/helloworld
           ports:
             - containerPort: 8080
