@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
 MAINTAINER pradeepkumar.thalo@hcl.com
 EXPOSE 8080
-ADD target/hello-spring-cloud-0.0.1.BUILD-SNAPSHOT.jar helloworld.jar
-ENTRYPOINT ["java","-jar","helloworld.jar"]
+ADD target/demo-0.0.1-SNAPSHOT.jar students.jar
+ENTRYPOINT ["java","-jar","students.jar"]
