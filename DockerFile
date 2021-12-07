@@ -1,0 +1,4 @@
+FROM openjdk:8-jdk-alpine
+MAINTAINER pradeepkumar.thalo@hcl.com
+COPY target/hello-spring-cloud-0.0.1.BUILD-SNAPSHOT.jar helloworld.jar
+ENTRYPOINT ["java","-jar","/helloworld.jar"]
