@@ -4,7 +4,7 @@ metadata:
   name: demo-helloworld
 spec:
   selector:
-    app: demo-helloworld
+    app: k8-deployment-demo
   ports:
     - protocol: TCP
       port: 8080
