@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-helloworld
+spec:
+  selector:
+    app: demo-helloworld
+  ports:
+    - protocol: TCP
+      port: 8080
+  type: ClusterIP
