@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.8.3
+Built-By: dell
+Build-Jdk: 17.0.1
+Implementation-Title: hello-spring-cloud
+Implementation-Version: 0.0.1.BUILD-SNAPSHOT
+Implementation-Vendor-Id: helloworld
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/hello-spring-c
+ loud/
+Main-Class: org.springframework.boot.loader.JarLauncher
+Start-Class: helloworld.Application
+Spring-Boot-Version: 1.5.3.RELEASE
+Spring-Boot-Classes: BOOT-INF/classes/
+Spring-Boot-Lib: BOOT-INF/lib/
+
