@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
+  name: students
   labels:
-    app: helloworld
+    app: students
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: helloworld
+      app: students
   template:
     metadata:
       labels:
-        app: helloworld
+        app: students
     spec:
       containers:
-        - name: helloworld
-          image: helloworld
+        - name: students
+          image: students
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
