@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  helloworld:
+    container_name: helloworld
+    environment:
+      PORT: "8080"
+    image: helloworld:latest
+    ports:
+      - target: 8080
+        published: 8082
+  spring-music:
+    container_name: spring-music
+    environment:
+      JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: "8080"
+      PORT: "8080"
+      SPRING_PROFILES_ACTIVE: "8080"
+    image: spring-music:latest
+    ports:
+      - target: 8080
+        published: 8080
+  student:
+    container_name: student
+    environment:
+      PORT: "8080"
+    image: student:latest
+    ports:
+      - target: 8080
+        published: 8081

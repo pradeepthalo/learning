@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    move2kube.konveyor.io/service.expose: "true"
+  creationTimestamp: null
+  labels:
+    move2kube.konveyor.io/service: helloworld
+  name: helloworld
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      move2kube.konveyor.io/service: helloworld
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: helloworld
+      name: helloworld
+    spec:
+      containers:
+        - env:
+            - name: PORT
+              value: "8080"
+          image: '{{.Values.registryurl}}/{{.Values.registrynamespace}}/helloworld:{{ index .Values.services "helloworld" "containers" "helloworld" "imagetag"  }}'
+          imagePullPolicy: Always
+          name: helloworld
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}

@@ -1,0 +1,10 @@
+
+
+
+The services are accessible on the following paths:
+helloworld : http://myproject.myproject.com/helloworld
+spring-music : http://myproject.myproject.com/spring-music
+student : http://myproject.myproject.com/student
+
+
+

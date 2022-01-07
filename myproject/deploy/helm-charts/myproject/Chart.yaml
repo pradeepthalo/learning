@@ -1,0 +1,8 @@
+name: myproject
+description: A generated Helm Chart for myproject 
+version: 0.1.0
+apiVersion: v1
+keywords:
+  - myproject
+sources:
+home:

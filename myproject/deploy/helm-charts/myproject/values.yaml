@@ -1,0 +1,16 @@
+ingresshost: myproject.myproject.com
+registryurl: index.docker.io
+registrynamespace: myproject
+services:
+  helloworld:
+    containers:
+      helloworld:
+        imagetag: latest
+  spring-music:
+    containers:
+      spring-music:
+        imagetag: latest
+  student:
+    containers:
+      student:
+        imagetag: latest

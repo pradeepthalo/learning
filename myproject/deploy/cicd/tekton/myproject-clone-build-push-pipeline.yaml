@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  creationTimestamp: null
+  name: myproject-clone-build-push
+spec:
+  params:
+    - description: registry-domain/namespace where the output image should be pushed.
+      name: image-registry-url
+      type: string
+  workspaces:
+    - description: This workspace will receive the cloned git repo and be passed to the kaniko task for building the image.
+      name: myproject-shared-data

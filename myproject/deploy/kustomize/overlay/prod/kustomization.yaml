@@ -1,0 +1,27 @@
+patches:
+  - path: student-deployment.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: student
+  - path: helloworld-deployment.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: helloworld
+  - path: spring-music-deployment.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: spring-music
+  - path: myproject-ingress.yaml
+    target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: myproject
+resources:
+  - ../../base

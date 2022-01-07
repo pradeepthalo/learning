@@ -1,0 +1,29 @@
+move2kube:
+  containerization:
+    types:
+      - CNB
+  services:
+    helloworld:
+      enable: true
+      expose: true
+      urlpath: /helloworld
+    spring-music:
+      enable: true
+      expose: true
+      urlpath: /spring-music
+    student:
+      enable: true
+      expose: true
+      urlpath: /student
+  sources:
+    types:
+      - CloudFoundry
+  target:
+    clustertype: Kubernetes
+    imageregistry:
+      logintype: No authentication
+      namespace: myproject
+      url: index.docker.io
+    ingress:
+      host: myproject.com
+      tls: ""

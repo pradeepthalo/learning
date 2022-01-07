@@ -1,0 +1,142 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: QACache
+spec:
+  solutions:
+    - id: move2kube.sources.types
+      type: MultiSelect
+      description: 'Select all source types that you are interested in:'
+      hints:
+        - Services that don't support any of the source types you are interested in will be ignored.
+      options:
+        - CloudFoundry
+      default:
+        - CloudFoundry
+      answer:
+        - CloudFoundry
+    - id: move2kube.services.[].enable
+      type: MultiSelect
+      description: 'Select all services that are needed:'
+      hints:
+        - The services unselected here will be ignored.
+      options:
+        - helloworld
+        - spring-music
+        - student
+      default:
+        - helloworld
+        - spring-music
+        - student
+      answer:
+        - helloworld
+        - spring-music
+        - student
+    - id: move2kube.containerization.types
+      type: MultiSelect
+      description: 'Select all containerization modes that is of interest:'
+      hints:
+        - Services that don't support any of the containerization techniques you are interested in will be ignored.
+      options:
+        - CNB
+      default:
+        - CNB
+      answer:
+        - CNB
+    - id: move2kube.target.clustertype
+      type: Select
+      description: 'Choose the cluster type:'
+      hints:
+        - Choose the cluster type you would like to target
+      options:
+        - Kubernetes
+        - Openshift
+        - AWS-EKS
+        - Azure-AKS
+        - GCP-GKE
+        - IBM-IKS
+        - IBM-Openshift
+      default: Kubernetes
+      answer: Kubernetes
+    - id: move2kube.services.[].expose
+      type: MultiSelect
+      description: 'Select all services that should be exposed:'
+      hints:
+        - Exposed services will be reachable from outside the cluster.
+      options:
+        - spring-music
+        - student
+        - helloworld
+      default:
+        - spring-music
+        - student
+        - helloworld
+      answer:
+        - spring-music
+        - student
+        - helloworld
+    - id: move2kube.services."spring-music".urlpath
+      type: Input
+      description: What URL/path should we expose the service spring-music on?
+      hints:
+        - 'By default we expose the service on /<service name>:'
+      default: /spring-music
+      answer: /spring-music
+    - id: move2kube.services."student".urlpath
+      type: Input
+      description: What URL/path should we expose the service student on?
+      hints:
+        - 'By default we expose the service on /<service name>:'
+      default: /student
+      answer: /student
+    - id: move2kube.services."helloworld".urlpath
+      type: Input
+      description: What URL/path should we expose the service helloworld on?
+      hints:
+        - 'By default we expose the service on /<service name>:'
+      default: /helloworld
+      answer: /helloworld
+    - id: move2kube.target.imageregistry.url
+      type: Select
+      description: 'Enter the name of the image registry : '
+      hints:
+        - You can always change it later by changing the yamls.
+      options:
+        - Other (specify custom option)
+        - index.docker.io
+        - registry.pivotal.io
+        - registry.tanzu.vmware.com
+        - harbor.tkgi.uat.lnd.hclcnlabs.com
+        - quay.io
+      default: quay.io
+      answer: index.docker.io
+    - id: move2kube.target.imageregistry.namespace
+      type: Input
+      description: 'Enter the namespace where the new images should be pushed : '
+      hints:
+        - 'Ex : myproject'
+      default: myproject
+      answer: myproject
+    - id: move2kube.target.imageregistry.logintype
+      type: Select
+      description: '[index.docker.io] What type of container registry login do you want to use?'
+      hints:
+        - Docker login from config mode, will use the default config from your local machine.
+      options:
+        - Use existing pull secret
+        - No authentication
+        - UserName/Password
+      default: No authentication
+      answer: No authentication
+    - id: move2kube.target.ingress.host
+      type: Input
+      description: Provide the ingress host domain
+      hints:
+        - Ingress host domain is part of service URL
+      default: myproject.com
+      answer: myproject.com
+    - id: move2kube.target.ingress.tls
+      type: Input
+      description: Provide the TLS secret for ingress
+      hints:
+        - Enter TLS secret name
+      default: ""
+      answer: ""

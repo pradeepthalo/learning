@@ -1,0 +1,6 @@
+source/
+└── m2k_collect
+    └── cf
+        ├── helloworld-cnb-build.sh
+        ├── spring-music-cnb-build.sh
+        └── student-cnb-build.sh

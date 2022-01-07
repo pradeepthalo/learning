@@ -1,0 +1,255 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: myproject
+objects:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: student
+      name: student
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          move2kube.konveyor.io/service: student
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            move2kube.konveyor.io/service.expose: "true"
+          creationTimestamp: null
+          labels:
+            move2kube.konveyor.io/service: student
+          name: student
+        spec:
+          containers:
+            - env:
+                - name: PORT
+                  value: "8080"
+              image: index.docker.io/myproject/student:latest
+              imagePullPolicy: Always
+              name: student
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status: {}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: helloworld
+      name: helloworld
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          move2kube.konveyor.io/service: helloworld
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            move2kube.konveyor.io/service.expose: "true"
+          creationTimestamp: null
+          labels:
+            move2kube.konveyor.io/service: helloworld
+          name: helloworld
+        spec:
+          containers:
+            - env:
+                - name: PORT
+                  value: "8080"
+              image: index.docker.io/myproject/helloworld:latest
+              imagePullPolicy: Always
+              name: helloworld
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status: {}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: spring-music
+      name: spring-music
+    spec:
+      progressDeadlineSeconds: 600
+      replicas: 2
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          move2kube.konveyor.io/service: spring-music
+      strategy:
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+        type: RollingUpdate
+      template:
+        metadata:
+          annotations:
+            move2kube.konveyor.io/service.expose: "true"
+          creationTimestamp: null
+          labels:
+            move2kube.konveyor.io/service: spring-music
+          name: spring-music
+        spec:
+          containers:
+            - env:
+                - name: JBP_CONFIG_SPRING_AUTO_RECONFIGURATION
+                  value: '{enabled: false}'
+                - name: SPRING_PROFILES_ACTIVE
+                  value: http2
+                - name: PORT
+                  value: "8080"
+              image: index.docker.io/myproject/spring-music:latest
+              imagePullPolicy: Always
+              name: spring-music
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+    status: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: student
+      name: student
+    spec:
+      ports:
+        - name: port-8080
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        move2kube.konveyor.io/service: student
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: helloworld
+      name: helloworld
+    spec:
+      ports:
+        - name: port-8080
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        move2kube.konveyor.io/service: helloworld
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      annotations:
+        move2kube.konveyor.io/service.expose: "true"
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: spring-music
+      name: spring-music
+    spec:
+      ports:
+        - name: port-8080
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        move2kube.konveyor.io/service: spring-music
+      sessionAffinity: None
+      type: ClusterIP
+    status:
+      loadBalancer: {}
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      creationTimestamp: null
+      labels:
+        move2kube.konveyor.io/service: myproject
+      name: myproject
+    spec:
+      rules:
+        - host: myproject.myproject.com
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: student
+                    port:
+                      name: port-8080
+                path: /student
+                pathType: Prefix
+              - backend:
+                  service:
+                    name: helloworld
+                    port:
+                      name: port-8080
+                path: /helloworld
+                pathType: Prefix
+              - backend:
+                  service:
+                    name: spring-music
+                    port:
+                      name: port-8080
+                path: /spring-music
+                pathType: Prefix
+    status:
+      loadBalancer: {}

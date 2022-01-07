@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    move2kube.konveyor.io/service: myproject
+  name: myproject
+spec:
+  rules:
+    - host: '{{ .Release.Name }}-{{ .Values.ingresshost }}'
+      http:
+        paths:
+          - backend:
+              service:
+                name: spring-music
+                port:
+                  name: port-8080
+            path: /spring-music
+            pathType: Prefix
+          - backend:
+              service:
+                name: student
+                port:
+                  name: port-8080
+            path: /student
+            pathType: Prefix
+          - backend:
+              service:
+                name: helloworld
+                port:
+                  name: port-8080
+            path: /helloworld
+            pathType: Prefix
+status:
+  loadBalancer: {}

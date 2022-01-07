@@ -1,0 +1,56 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: CfContainerizers
+spec:
+  buildpackContainerizers:
+    - buildpackName: staticfile_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: java_buildpack_offline
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: ruby_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: nginx_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: nodejs_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: go_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: r_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: python_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: php_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: dotnet_core_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: binary_buildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: appdbuildpack
+      containerBuildType: CNB
+      targetOptions:
+        - cloudfoundry/cnb:cflinuxfs3
+    - buildpackName: java
+      containerBuildType: CNB
+      targetOptions:
+        - gcr.io/buildpacks/builder

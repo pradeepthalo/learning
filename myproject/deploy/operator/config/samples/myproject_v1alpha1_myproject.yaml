@@ -1,0 +1,24 @@
+apiVersion: myproject.io/v1alpha1
+kind: Myproject
+metadata:
+  name: myproject-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/myproject/values.yaml
+  ingresshost: myproject.myproject.com
+  registrynamespace: myproject
+  registryurl: index.docker.io
+  services:
+    helloworld:
+      containers:
+        helloworld:
+          imagetag: latest
+    spring-music:
+      containers:
+        spring-music:
+          imagetag: latest
+    student:
+      containers:
+        student:
+          imagetag: latest
+  
+  

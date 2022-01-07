@@ -1,0 +1,25 @@
+apiVersion: move2kube.konveyor.io/v1alpha1
+kind: CfInstanceApps
+spec:
+  applications:
+    - name: helloworld
+      detectedBuildpack: java
+      memory: 1024
+      instances: 1
+      ports:
+        - 8080
+    - name: spring-music
+      detectedBuildpack: java
+      memory: 1024
+      instances: 1
+      ports:
+        - 8080
+      env:
+        JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+        SPRING_PROFILES_ACTIVE: http2
+    - name: student
+      detectedBuildpack: java
+      memory: 1024
+      instances: 1
+      ports:
+        - 8080

@@ -1,0 +1,24 @@
+# permissions for end users to edit myprojects.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: myproject-editor-role
+rules:
+- apiGroups:
+  - myproject.io
+  resources:
+  - myprojects
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - myproject.io
+  resources:
+  - myprojects/status
+  verbs:
+  - get

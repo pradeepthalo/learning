@@ -1,0 +1,8 @@
+resources:
+  - student-deployment.yaml
+  - helloworld-deployment.yaml
+  - spring-music-deployment.yaml
+  - student-service.yaml
+  - helloworld-service.yaml
+  - spring-music-service.yaml
+  - myproject-ingress.yaml
